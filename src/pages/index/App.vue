@@ -5,6 +5,7 @@
     <div class="swiper-container">
       <Swiper :options="imgOptions"/>
     </div>
+    <button @click="showToast">显示Toast</button>
   </div>
 </template>
 
@@ -37,6 +38,11 @@ export default {
         ],
         innerTime: 3000
       }
+    }
+  },
+  methods: {
+    showToast: function () {
+      alert('提示信息')
     }
   }
 }
