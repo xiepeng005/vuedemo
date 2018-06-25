@@ -1,5 +1,6 @@
 import Vue from 'vue'
-const ToastConstructor = Vue.extend(require('./toast'))
+import ToastVue from './toast.vue'
+const ToastConstructor = Vue.extend(ToastVue)
 let toastPool = []
 
 let getAnInstance = () => {
@@ -26,7 +27,7 @@ let removeDom = event => {
 }
 
 ToastConstructor.prototype.close = function () {
-  this.visiable = false
+  this.visible = false
   this.$el.addEventListener('transitionend', removeDom)
   this.closed = true
   returnAnInstance(this)
@@ -39,11 +40,11 @@ let Toast = (options = {}) => {
   clearTimeout(instance.timer)
   instance.message = typeof options === 'string' ? options : options.message
   instance.position = options.position || 'middle'
-  instance.iconClass = options.iconClass || ''
   instance.className = options.className || ''
+  instance.iconClass = options.iconClass || ''
   document.body.appendChild(instance.$el)
   Vue.nextTick(function () {
-    instance.visiable = true
+    instance.visible = true
     instance.$el.removeEventListener('transitionend', removeDom)
     ~duration && (instance.timer = setTimeout(function () {
       if (instance.closed) return

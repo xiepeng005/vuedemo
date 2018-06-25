@@ -23,11 +23,13 @@ export default {
       default: ''
     }
   },
+
   data () {
     return {
-      visiable: false
+      visible: false
     }
   },
+
   computed: {
     customClass () {
       let classes = []
@@ -40,15 +42,15 @@ export default {
           break
         default:
           classes.push('placemiddle')
-          break
       }
       classes.push(this.className)
+
       return classes.join(' ')
     }
   }
 }
 </script>
-<style>
+<style scoped>
 .toast{
   position: fixed;
   max-width: 80%;
