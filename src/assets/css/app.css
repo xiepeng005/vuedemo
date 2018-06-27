@@ -1,0 +1,4 @@
+body{background: #f7f4f8}
+a:hover,a:focus{text-decoration: none}
+.flex-box{display: flex;align-items: center;}
+.flex-box .flex{flex: 1;}
