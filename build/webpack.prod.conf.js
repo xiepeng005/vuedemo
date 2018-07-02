@@ -108,20 +108,25 @@ const webpackConfig = merge(baseWebpackConfig, {
         ignore: ['.*']
       }
     ])
-  ]
+  ].concat(utils.htmlPlugin())
 })
 //配置生成的html文件
-let pages = utils.getEntry('./src/pages/**/index.html')
-for(let pathname in pages){
-  let conf = {
-    filename: pathname + '.html',
-    template: pages[pathname], //模板路径
-    inject:true, //js插入位置
-    chunks: [pathname], //每个html引用的js模块
-    chunksSortMode: 'dependency'
-  }
-  webpackConfig.plugins.push(new HtmlWebpackPlugin(conf));
-}
+// let pages = utils.getEntry('./src/pages/**/index.html')
+// for(let pathname in pages){
+//   let conf = {
+//     filename: pathname + '.html',
+//     template: pages[pathname], //模板路径
+//     inject:true, //js插入位置
+//     chunks: ['manifest', 'vendor', pathname], //每个html引用的js模块
+//     chunksSortMode: 'dependency',
+//     minify: {
+//       removeComments: true,
+//       collapseWhitespace: true,
+//       removeAttributeQuotes: true
+//     }
+//   }
+//   webpackConfig.plugins.push(new HtmlWebpackPlugin(conf));
+// }
 if (config.build.productionGzip) {
   const CompressionWebpackPlugin = require('compression-webpack-plugin')
 
